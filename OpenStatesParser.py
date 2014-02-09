@@ -8,7 +8,6 @@ VoteDict = {}
 STATE = 'NY'
 CHAMBER = 'upper'
 def VoteGenerator(state=STATE, chamber=CHAMBER, apikey=APIKEY):
-    Length = 0
     try:
         BillList =  json.load(urllib2.urlopen('http://openstates.org/api/v1/bills/?state=%s&chamber=lower&search_window=term&apikey=%s' % (state, apikey)))+json.load(urllib2.urlopen('http://openstates.org/api/v1/bills/?state=%s&chamber=upper&search_window=term&apikey=%s' % (state, apikey)))
     except:
@@ -19,7 +18,9 @@ def VoteGenerator(state=STATE, chamber=CHAMBER, apikey=APIKEY):
             BillList = BillList+PartBillList
             i = i+1
             PartBillList = json.load(urllib2.urlopen('http://openstates.org/api/v1/bills/?state=%s&chamber=lower&search_window=term&page=%s&per_page=10000&apikey=%s' % (state, i, apikey)))+json.load(urllib2.urlopen('http://openstates.org/api/v1/bills/?state=%s&chamber=upper&search_window=term&page=%s&per_page=10000&apikey=%s' % (state, i, apikey)))
-    print 'Length of Bill List: ', len(BillList)
+    Length = len(BillList)
+    VotesLength = 0
+    print 'Length of Bill List: ', Length
     for x in BillList:
         Votes = json.load(urllib2.urlopen('http://openstates.org/api/v1/bills/%s/%s/%s/%s/?apikey=%s' % (state, urllib2.quote(x['session']), urllib2.quote(x['chamber']), urllib2.quote(x['bill_id']), apikey)))['votes']
         if len(Votes) > 0:
@@ -34,9 +35,9 @@ def VoteGenerator(state=STATE, chamber=CHAMBER, apikey=APIKEY):
                                     VoteDict[Legislator['leg_id']][Trait] = json.load(urllib2.urlopen('http://openstates.org/api/v1/legislators/%s/?apikey=%s' % (Legislator['leg_id'], apikey)))[Trait]      
                                 except:
                                     VoteDict[Legislator['leg_id']][Trait] = 'NA' 
-                    Length = Length+1
-                    print Vote['date'], Vote['yes_count'], Vote['no_count'], Length, Vote['vote_id']
-        print BillList.index(x), Length  
+                    VotesLength = VotesLength+1
+        Length = Length-1
+        print 'Bills remaining: '+Length, 'Votes So Far: '+ VotesLength  
     for i in range(len(VoteList)): 
         Vote = VoteList[i]
         for Option in VoteCodes:
