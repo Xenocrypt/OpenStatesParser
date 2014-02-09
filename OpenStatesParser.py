@@ -5,7 +5,7 @@ APIKEY = '2e7d7ececfb742cf9f8394c300e98616'
 VoteCodes = {'yes_votes': 1, 'no_votes': 6}
 VoteList = []
 VoteDict = {}
-STATE = 'TX'
+STATE = 'NY'
 CHAMBER = 'upper'
 def VoteGenerator(state=STATE, chamber=CHAMBER, apikey=APIKEY):
     Length = 0
