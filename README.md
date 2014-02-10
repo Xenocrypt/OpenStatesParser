@@ -23,6 +23,6 @@ There are also the following functions:
 
 -OpenStatesParser.StateDifferenceFinder(ID1, ID2), which generates a list of votes where the legislators with OpenStates IDs "ID1" and "ID2" voted differently.
 
--OpenStatesParser.MatrixMaker(filename=YOURFILENAME, write=yes), which generates a roll call matrix with the information in OpenStatesParser.VoteDict.  If you specify write='yes', then the matrix is written using csv.writer to the specified file name, so the file name should end in '.csv'.
+-OpenStatesParser.MatrixMaker(filename=YOURFILENAME, write='yes'), which generates a roll call matrix with the information in OpenStatesParser.VoteDict.  The default is the matrix is then written using csv.writer to the specified file name, so the file name should end in '.csv'.  If you'd rather not write the file, just specify 'write' as anything other than 'yes', and it will just return the matrix.
 
 Note: I used my Sunlight apiikey as the default.  If you intend to use the library often, please get your own at http://sunlightfoundation.com/api/
