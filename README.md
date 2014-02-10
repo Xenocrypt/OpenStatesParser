@@ -11,7 +11,7 @@ That will generate:
 
 -OpenStatesParser.VoteList, a list of contested votes in the current term.
 
--OpenStatesParser.VoteDict, a dictionary pairing an OpenStates legislative ID with the legislator's name, party, district, and a list of their votes in the same order as OpenStatesParser.VoteList.  'yes' is coded as '1', 'no' is coded as '6', and '9' indicates a legislator not listed as voting yes or no.  This coding follows Simon Jackman's 'PSCL' package in R.
+-OpenStatesParser.VoteDict, a dictionary pairing an OpenStates legislative ID with the legislator's name, party, district, and a list of their votes in the same order as OpenStatesParser.VoteList.  'yes' is coded as '1', 'no' is coded as '6', and '9' indicates a legislator not listed as voting yes or no.  This coding more or less follows Simon Jackman's 'PSCL' package in R.
 
 There are also the following functions:
 
