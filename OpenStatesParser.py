@@ -37,14 +37,14 @@ def VoteGenerator(state=STATE, chamber=CHAMBER, apikey=APIKEY):
                                     VoteDict[Legislator['leg_id']][Trait] = 'NA' 
                     VotesLength = VotesLength+1
         Length = Length-1
-        print 'Bills remaining: '+Length, 'Votes So Far: '+ VotesLength  
+        print 'Bills remaining: %s, Votes So Far: %s ' % (Length, VotesLength)  
     for i in range(len(VoteList)): 
         Vote = VoteList[i]
         for Option in VoteCodes:
             for Legislator in Vote[Option]:
                 if 'Votes' not in VoteDict[Legislator['leg_id']]:
                     VoteRow = []
-                    while len(VoteRow) < Length:
+                    while len(VoteRow) < VotesLength:
                         VoteRow.append(9)
                     VoteDict[Legislator['leg_id']]['Votes'] = VoteRow
                 VoteDict[Legislator['leg_id']]['Votes'][i] = VoteCodes[Option]
