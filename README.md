@@ -25,4 +25,4 @@ There are also the following functions:
 
 -OpenStatesParser.MatrixMaker(filename=YOURFILENAME, write='yes'), which generates a roll call matrix with the information in OpenStatesParser.VoteDict.  The default is the matrix is then written using csv.writer to the specified file name, so the file name should end in '.csv'.  If you'd rather not write the file, just specify 'write' as anything other than 'yes', and it will just return the matrix.
 
-Note: I used my Sunlight apiikey as the default.  If you intend to use the library often, please get your own at http://sunlightfoundation.com/api/
+Note: I used my Sunlight apiikey as the default.  If you intend to use the library often, then please get your own at http://sunlightfoundation.com/api/.
