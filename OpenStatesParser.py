@@ -5,6 +5,7 @@ APIKEY = '2e7d7ececfb742cf9f8394c300e98616'
 VoteCodes = {'yes_votes': 1, 'no_votes': 6}
 VoteList = []
 VoteDict = {}
+TotalVoteList = []
 STATE = 'NY'
 CHAMBER = 'upper'
 def VoteGenerator(state=STATE, chamber=CHAMBER, apikey=APIKEY):
@@ -23,6 +24,7 @@ def VoteGenerator(state=STATE, chamber=CHAMBER, apikey=APIKEY):
     print 'Length of Bill List: ', Length
     for x in BillList:
         Votes = json.load(urllib2.urlopen('http://openstates.org/api/v1/bills/%s/%s/%s/%s/?apikey=%s' % (state, urllib2.quote(x['session']), urllib2.quote(x['chamber']), urllib2.quote(x['bill_id']), apikey)))['votes']
+        TotalVoteList = TotalVoteList+Votes
         if len(Votes) > 0:
             for Vote in Votes:
                 if Vote['chamber'] == chamber and Vote['yes_count'] > 0 and Vote['no_count'] > 0:
@@ -53,6 +55,8 @@ def Restart():
     VoteList = []
     global VoteDict
     VoteDict = {}
+    global TotalVoteList
+    TotalVoteList = []
 def StateDifferenceFinder(j, k):
     if j in VoteDict and k in VoteDict:
         First = VoteDict[j]['Votes']
