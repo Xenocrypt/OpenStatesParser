@@ -8,7 +8,8 @@ VoteDict = {}
 TotalVoteList = []
 STATE = 'NY'
 CHAMBER = 'upper'
-def VoteGenerator(state=STATE, chamber=CHAMBER, apikey=APIKEY):
+YOURCHOICE = 'no'
+def VoteGenerator(state=STATE, chamber=CHAMBER, apikey=APIKEY, totalvotes = YOURCHOICE):
     try:
         BillList =  json.load(urllib2.urlopen('http://openstates.org/api/v1/bills/?state=%s&chamber=lower&search_window=term&apikey=%s' % (state, apikey)))+json.load(urllib2.urlopen('http://openstates.org/api/v1/bills/?state=%s&chamber=upper&search_window=term&apikey=%s' % (state, apikey)))
     except:
@@ -24,7 +25,8 @@ def VoteGenerator(state=STATE, chamber=CHAMBER, apikey=APIKEY):
     print 'Length of Bill List: ', Length
     for x in BillList:
         Votes = json.load(urllib2.urlopen('http://openstates.org/api/v1/bills/%s/%s/%s/%s/?apikey=%s' % (state, urllib2.quote(x['session']), urllib2.quote(x['chamber']), urllib2.quote(x['bill_id']), apikey)))['votes']
-        TotalVoteList = TotalVoteList+Votes
+        if totalvotes == 'yes':
+            TotalVoteList = TotalVoteList+Votes
         if len(Votes) > 0:
             for Vote in Votes:
                 if Vote['chamber'] == chamber and Vote['yes_count'] > 0 and Vote['no_count'] > 0:
