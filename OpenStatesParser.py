@@ -89,7 +89,7 @@ def PeopleLike(i, format=RESULT):
                 else:
                     DifferenceDict[x][1]=DifferenceDict[x][1]+1 
     for x in DifferenceDict:
-        if DifferenceDict[x][0]+DifferenceDict[x][1] > 1:
+        if DifferenceDict[x][0]+DifferenceDict[x][1] > 0:
             DifferenceList.append([x, VoteDict[x]['Name'], VoteDict[x]['party'], DifferenceDict[x][0], DifferenceDict[x][1], float(DifferenceDict[x][0])/(float(DifferenceDict[x][1])+float(DifferenceDict[x][0]))])
         else:
             DifferenceList.append([x, VoteDict[x]['Name'], VoteDict[x]['party'], DifferenceDict[x][0], DifferenceDict[x][1], -2])
