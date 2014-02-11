@@ -3,13 +3,15 @@ OpenStatesParser
 
 A Python module using the OpenStates API to generate and analyze current-term state legislative voting records.
 
-To use it, import OpenStatesParser and run OpenStatesParser.VoteGenerator(state=YOURSTATE, chamber=YOURCHAMBER, apikey=YOURAPIKEY).
+To use it, import OpenStatesParser and run OpenStatesParser.VoteGenerator(state=YOURSTATE, chamber=YOURCHAMBER, apikey=YOURAPIKEY, totalvotes=YOURCHOICE).
 
 That will generate:
 
 -OpenStatesParser.BillList, a list of bills in the current term.
 
 -OpenStatesParser.VoteList, a list of contested votes in the current term.
+
+-OpenStatesParser.TotalVoteList, a list of all votes in the current term, contested or not (included only if you specify totalvotes = 'yes').
 
 -OpenStatesParser.VoteDict, a dictionary pairing an OpenStates legislative ID with the legislator's name, party, district, and a list of their votes in the same order as OpenStatesParser.VoteList.  'yes' is coded as '1', 'no' is coded as '6', and '9' indicates a legislator not listed as voting yes or no.  This coding more or less follows Simon Jackman's 'PSCL' package in R.
 
